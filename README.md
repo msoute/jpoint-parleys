@@ -1,4 +1,4 @@
 jpoint-parleys
 ==============
 
-Test       3
+Test       2
