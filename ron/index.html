@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script src="js/jquery-1.7.2.min.js" type="text/javascript"></script>
+    <script src="js/d3.v2.js" type="text/javascript"></script>
+
+</head>
+<body>
+
+
+<script type="text/javascript">
+
+    var channelUrl = "http://server.parleys.com/rest/v2/spaces/189/channels/102998/presentations.json";
+    var mapKeywords = [];
+    var mapPresentations = [];
+
+    $(document).ready(function() {
+
+        $.getJSON(channelUrl, function(data) {
+
+
+            for (var i = 0; i < data.length; i++) {
+
+                mapPresentations[data[i].title] = data[i].totalViews;
+
+                for (var j = 0; j < data[i].keywords.length; j++) {
+                    var keyword = data[i].keywords[j].name.toLowerCase();
+                    var keywordArray = mapKeywords[keyword];
+
+                    if (keywordArray == null) {
+                        mapKeywords[keyword] = data[i].totalViews;
+                    } else {
+                        mapKeywords[keyword] += data[i].totalViews;
+                    }
+                }
+
+            }
+
+            console.log(mapPresentations);
+            console.log(mapKeywords);
+
+        });
+
+    });
+
+</script>
+
+</body>
+</html>
