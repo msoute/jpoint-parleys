@@ -2,8 +2,44 @@
 <html>
 <head>
     <title></title>
+    <script src="js/jquery-1.7.2.min.js" type="text/javascript"></script>
+    <script src="js/d3.v2.js" type="text/javascript"></script>
+
 </head>
 <body>
+
+
+<script type="text/javascript">
+
+    var channelUrl = "/Users/ron/jpoint/parleys/jpoint-parleys/jos/index.html";
+    var map = [];
+
+    $(document).ready(function() {
+
+        $.getJSON(channelUrl, function(data) {
+
+
+            for (var i = 0; i < data.length; i++) {
+
+                for (var j = 0; j < data[i].keywords.length; j++) {
+                    var keyword = data[i].keywords[j].name.toLowerCase();
+                    var keywordArray = map[keyword];
+
+                    if (keywordArray == null) {
+                        map[keyword] = 1;
+                    } else {
+                        map[keyword]++;
+                    }
+                }
+            }
+
+            console.log(map);
+
+        });
+
+    });
+
+</script>
 
 </body>
 </html>
