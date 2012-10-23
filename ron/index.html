@@ -19,7 +19,7 @@
 
         $.getJSON(channelUrl, function(data) {
 
-
+            console.log('test');
             for (var i = 0; i < data.length; i++) {
 
                 mapPresentations[data[i].title] = data[i].totalViews;
@@ -29,19 +29,21 @@
                     var keywordArray = mapKeywords[keyword];
 
                     if (keywordArray == null) {
-                        mapKeywords[keyword] = data[i].totalViews;
+                        mapKeywords.push({'keyword':keyword, totalViews:data[i].totalViews});
                     } else {
-                        mapKeywords[keyword] += data[i].totalViews;
+                        for (var i = 0; i < mapKeywords.length; i++) {
+                            var obj = mapKeywords[i];
+                            if (obj.keyword == keyword) {
+                                obj.totalViews = obj.totalViews + data[i].totalViews;
+                            }
+                        }
                     }
                 }
 
             }
 
-            console.log(mapPresentations);
             console.log(mapKeywords);
-
         });
-
     });
 
 </script>
