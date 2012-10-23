@@ -9,19 +9,12 @@
 
 <script type="text/javascript">
 
+    var url = "http://server.parleys.com/rest/v2/spaces.json";
+
     $(document).ready(function() {
 
-        $.getJSON('http://server.parleys.com/rest/v2/spaces/189/channels.json', function(data) {
-            var items = [];
-
-            $.each(data, function(key, val) {
-                items.push('<li id="' + key + '">' + val + '</li>');
-            });
-
-            $('<ul/>', {
-                'class': 'my-new-list',
-                html: items.join('')
-            }).appendTo('body');
+        $.getJSON(url, function(data) {
+            console.log(data);
         });
 
 
